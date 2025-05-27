@@ -1,6 +1,3 @@
-CREATE DATABASE playtech;
-USE playtech;
-
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   fname VARCHAR(255),
