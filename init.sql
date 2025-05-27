@@ -15,7 +15,7 @@ CREATE TABLE audit_trail (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(255),
   activity VARCHAR(255),
-  register VARCHAR(255),
+  register DATETIME DEFAULT CURRENT_TIMESTAMP,
   login VARCHAR(2),
   logout VARCHAR(2)
 );
