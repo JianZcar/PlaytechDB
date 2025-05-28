@@ -13,8 +13,8 @@ CREATE TABLE audit_trail (
   email VARCHAR(255),
   activity VARCHAR(255),
   register DATETIME DEFAULT CURRENT_TIMESTAMP,
-  login VARCHAR(2),
-  logout VARCHAR(2)
+  login BOOLEAN,
+  logout BOOLEAN
 );
 
 CREATE TABLE admins (
@@ -22,7 +22,7 @@ CREATE TABLE admins (
   name VARCHAR(255),
   email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  role VARCHAR(50) -- e.g., 'superadmin', 'manager'
+  is_super BOOLEAN -- e.g., 'superadmin', 'manager'
 );
 
 CREATE TABLE categories (
@@ -48,7 +48,7 @@ CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
   total_price DECIMAL(10,2),
-  status VARCHAR(50), -- e.g., 'Pending', 'Paid', 'Shipped', 'Delivered'
+  status TINYINT UNSIGNED CHECK (mycol BETWEEN 0 AND 3), -- e.g., 'Pending', 'Paid', 'Shipped', 'Delivered'
   order_date DATETIME,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -77,7 +77,7 @@ CREATE TABLE cart (
 CREATE TABLE inventory_logs (
   id INT AUTO_INCREMENT PRIMARY KEY,
   product_id INT,
-  action VARCHAR(50), -- 'add', 'remove', 'adjust'
+  action TINYINT UNSIGNED CHECK (mycol BETWEEN 0 AND 2), -- 'add', 'remove', 'adjust'
   quantity INT,
   admin_id INT,
   date_logged DATETIME,
