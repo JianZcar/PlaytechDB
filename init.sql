@@ -39,7 +39,7 @@ CREATE TABLE products (
   price DECIMAL(10,2),
   category_id INT,
   stock INT,
-  image blob,
+  image MEDIUMBLOB,
   date_added DATE,
   FOREIGN KEY (category_id) REFERENCES categories(id)
 );
